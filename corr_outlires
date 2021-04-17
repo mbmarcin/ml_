@@ -1,0 +1,13 @@
+def removeOutliersFromColumn(titanic, column):
+    q_low = titanic[column].quantile(0.01)
+    q_hi  = titanic[column].quantile(0.99)
+    print(f"{q_low} {q_hi}")
+    df_filtered = titanic[(titanic[column] < q_hi) & (titanic[column] > q_low)]
+    return df_filtered
+    
+    
+    
+    
+def showCorrelation(titanic):
+    corr_matrix = titanic.corr().abs()
+    print(corr_matrix['Survived'].sort_values(ascending=False))
